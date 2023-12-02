@@ -1,0 +1,63 @@
+CREATE DATABASE IF NOT EXISTS mi_app;
+
+-- Seleccionar la base de datos
+USE mi_app;
+
+-- Tabla de usuarios
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    email VARCHAR(100) UNIQUE,
+    usuario VARCHAR(50) UNIQUE,
+    contrasena VARCHAR(255)
+);
+
+-- Tabla de temas
+CREATE TABLE IF NOT EXISTS temas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    descripcion TEXT,
+    completado BOOLEAN DEFAULT false
+);
+
+-- Tabla de lecciones
+CREATE TABLE IF NOT EXISTS lecciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_tema INT,
+    title VARCHAR(100),
+    description TEXT,
+    completed BOOLEAN DEFAULT false,
+    FOREIGN KEY (id_tema) REFERENCES temas(id)
+);
+
+-- Tabla de quizzes
+CREATE TABLE IF NOT EXISTS quizzes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_leccion INT,
+    question VARCHAR(255),
+    options TEXT,
+    correctAnswerIndex INT,
+    FOREIGN KEY (id_leccion) REFERENCES lecciones(id)
+);
+
+-- Tabla de progreso del usuario
+CREATE TABLE IF NOT EXISTS progreso_usuario (
+    id_usuario INT,
+    id_tema INT,
+    id_leccion INT,
+    completado BOOLEAN DEFAULT false,
+    PRIMARY KEY (id_usuario, id_tema, id_leccion),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+    FOREIGN KEY (id_tema) REFERENCES temas(id),
+    FOREIGN KEY (id_leccion) REFERENCES lecciones(id)
+);
+
+CREATE TABLE slides (
+  id SERIAL PRIMARY KEY,
+  leccion_id INTEGER REFERENCES lecciones(id),
+  title VARCHAR(255),
+  content TEXT,
+  image_url VARCHAR(255)
+);
+
