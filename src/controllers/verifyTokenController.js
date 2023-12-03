@@ -10,7 +10,7 @@ const verifyToken = async (req, res) => {
     }
 
     try {
-        const decoded = jwt.verify(token, 'elpepe');
+        const decoded = jwt.verify(token, process.env.SESSION_SECRET);
         console.log('Decoded:', decoded);
 
         const userResult = await pool.query('SELECT * FROM usuarios WHERE id = $1', [decoded.userId]);

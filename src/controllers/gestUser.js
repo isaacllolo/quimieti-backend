@@ -12,7 +12,7 @@ const getUserName = async (req, res) => {
 
   try {
     // Verifica y decodifica el token
-    const decoded = jwt.verify(token, 'elpepe');
+    const decoded = jwt.verify(token, process.env.SESSION_SECRET);
 
     // Extrae el userId del token
     const userId = decoded.userId;

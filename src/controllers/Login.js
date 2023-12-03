@@ -26,7 +26,7 @@ const Login = async (req, res) => {
         if (user.length > 0) {
             // No envíes la contraseña en la respuesta
             delete user[0].contrasena;
-            const token = jwt.sign({ userId: user[0].id }, 'elpepe', { expiresIn: '1h' });
+            const token = jwt.sign({ userId: user[0].id }, process.env.SESSION_SECRET, { expiresIn: '1h' });
             req.session.user = user[0];
             return res.json({ ...user[0], status: "success",token: token });
         }

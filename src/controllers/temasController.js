@@ -8,7 +8,7 @@ const obtenerInformacionTema = async (req, res) => {
     if (!token) {
       return res.status(401).json({ mensaje: 'Token no proporcionado en la cookie' });
     }
-    const decoded = jwt.verify(token, 'elpepe');
+    const decoded = jwt.verify(token, process.env.SESSION_SECRET);
     const userId = decoded.userId;
     console.log('User ID:', userId);
     // Obtener información de los temas y su estado de completado

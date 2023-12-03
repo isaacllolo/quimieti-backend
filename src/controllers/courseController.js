@@ -6,7 +6,7 @@ const obtenerInformacionDelTema = async (req, res) => {
   try {
     const { temaId } = req.params;
     const token = req.headers.cookie.split('token=')[1];
-    const decoded = jwt.verify(token, 'elpepe');
+    const decoded = jwt.verify(token, process.env.SESSION_SECRET);
     const userId = decoded.userId;
 
 
