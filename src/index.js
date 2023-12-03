@@ -18,7 +18,7 @@ import dotenv from 'dotenv';
 import webpush from 'web-push'; 
 dotenv.config();
 webpush.setVapidDetails(
-  'mailto:your@email.com',
+  'mailto:isaacllolo10@gmail.com',
   process.env.VAPID_PUBLIC_KEY,
   process.env.VAPID_PRIVATE_KEY
 );
