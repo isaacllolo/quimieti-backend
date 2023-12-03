@@ -21,13 +21,13 @@ const completarLeccion = async (req, res) => {
         if (progresoLeccion.rows.length > 0) {
           return res.status(400).json({ mensaje: 'El usuario ya completó esta lección' });
         }
-        else  {
+        else if (progresoLeccion.rows.length===0) {
           // Si la lección no está en progreso_usuario, agrégala
           await pool.query('INSERT INTO progreso_usuario (id_usuario, id_leccion, id_tema, completado) VALUES ($1, $2, $3, true)', [userId, leccionId, temaId]);
-        }
-    
+      }
+       else{        await pool.query('UPDATE progreso_usuario SET completado = true WHERE id_usuario = $1 AND id_leccion = $2', [userId, leccionId]);
+      }
         // Inserta el registro de progreso para la lección completada
-        await pool.query('UPDATE progreso_usuario SET completado = true WHERE id_usuario = $1 AND id_leccion = $2', [userId, leccionId]);
     
         // Obtiene los datos del quiz asociado a la lección
         const quizResult = await pool.query('SELECT * FROM quizzes WHERE id_leccion = $1', [leccionId]);
