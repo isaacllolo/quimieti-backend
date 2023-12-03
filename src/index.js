@@ -56,6 +56,7 @@ app.use(
 app.use(cookieParser());  // Usa cookie-parser para gestionar cookies
 
 app.use(cors({
+  allowedOrigins: process.env.CORS_ORIGIN,
   origin: process.env.CORS_ORIGIN,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
