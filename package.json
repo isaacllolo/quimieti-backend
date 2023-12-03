@@ -22,7 +22,8 @@
     "knex": "^3.0.1",
     "nodemon": "^1.19.4",
     "pg": "^8.11.3",
-    "sql-template-strings": "^2.2.2"
+    "sql-template-strings": "^2.2.2",
+    "web-push": "^3.6.6"
   },
   "type": "module"
 }
