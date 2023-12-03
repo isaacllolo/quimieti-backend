@@ -15,7 +15,14 @@ import { pool } from './db.js';
 import verifyToken from './controllers/verifyTokenController.js';
 import completarLeccion from './controllers/Quiz.js';
 import dotenv from 'dotenv';
+import webpush from 'web-push'; 
 dotenv.config();
+webpush.setVapidDetails(
+  'mailto:your@email.com',
+  process.env.VAPID_PUBLIC_KEY,
+  process.env.VAPID_PRIVATE_KEY
+);
+
 const knex = Knex({
   client: 'pg',
   connection: {
