@@ -22,6 +22,7 @@ const marcarLeccionComoCompletada = async (req, res) => {
         UPDATE progreso_usuario SET completado = true WHERE id_usuario = ${usuarioId} AND id_leccion = ${leccionId}
       `;
     }
+    res.setHeader('Access-Control-Allow-Methods', 'PUT');
 
     res.status(200).json({ mensaje: 'Lección marcada como completada' });
   } catch (error) {

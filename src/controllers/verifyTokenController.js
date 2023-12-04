@@ -19,7 +19,7 @@ const verifyToken = async (req, res) => {
         if (userResult.rows.length === 0) {
             return res.status(401).json({ mensaje: 'Usuario no encontrado' });
         }
-        
+        res.setHeader('Access-Control-Allow-Methods', 'POST');
         res.status(200).json({ mensaje: 'Token válido',status: "success" , usuario: userResult.rows[0].usuario });
     } catch (error) {
         console.error('Error al verificar el token:', error);

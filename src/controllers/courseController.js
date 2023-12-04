@@ -29,6 +29,7 @@ const obtenerInformacionDelTema = async (req, res) => {
     `, [userId, temaId]);
 
     const lecciones = leccionesResult.rows;
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
 
     // Devolver información del tema y lecciones
     res.status(200).json({ tema, lecciones });

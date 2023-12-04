@@ -33,6 +33,7 @@ const completarLeccion = async (req, res) => {
         const quizResult = await pool.query('SELECT * FROM quizzes WHERE id_leccion = $1', [leccionId]);
         const quizData = quizResult.rows[0];
         console.log('QuizData:', quizResult.rows[0]);
+        res.setHeader('Access-Control-Allow-Methods', 'POST');
         res.status(200).json({ mensaje: 'Lección marcada como completada exitosamente', quiz: quizData });
       } catch (error) {
         console.error('Error al marcar la lección como completada y obtener datos del quiz:', error);

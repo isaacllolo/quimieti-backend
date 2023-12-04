@@ -9,6 +9,7 @@
 const logout = async (req, res) => {
   try {
     req.session.destroy();
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
     return res.json({ status: "success" });
   } catch (error) {
     console.error('Error al realizar la consulta:', error);

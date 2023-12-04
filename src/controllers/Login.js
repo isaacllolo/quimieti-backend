@@ -28,6 +28,8 @@ const Login = async (req, res) => {
             delete user[0].contrasena;
             const token = jwt.sign({ userId: user[0].id }, process.env.SESSION_SECRET, { expiresIn: '1h' });
             req.session.user = user[0];
+            res.setHeader('Access-Control-Allow-Methods', 'POST');
+
             return res.json({ ...user[0], status: "success",token: token });
         }
 

@@ -15,9 +15,10 @@ const obtenerInformacionTema = async (req, res) => {
     const result = await pool.query('SELECT t.*, CASE WHEN COUNT(l.id) = SUM(CAST(p.completado AS INT)) THEN true ELSE false END AS completado FROM temas t LEFT JOIN lecciones l ON t.id = l.id_tema LEFT JOIN progreso_usuario p ON l.id = p.id_leccion AND p.id_usuario = $1 GROUP BY t.id ORDER BY t.id', [userId]);
 
     const temas = result.rows;
-
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
     if (temas && temas.length > 0) {
       res.status(200).json(temas);
+
     } else {
       res.status(404).json({ mensaje: 'No hay temas disponibles' });
     }

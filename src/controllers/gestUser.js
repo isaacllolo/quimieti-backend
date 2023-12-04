@@ -24,7 +24,7 @@ const getUserName = async (req, res) => {
     // En este ejemplo, supondrémos que el nombre de usuario es directamente el userId
     const userName = userId;
 
-    // Envía el nombre de usuario en la respuesta
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
     return res.status(200).json({ userName });
   } catch (error) {
     console.error('Error al verificar el token:', error);
