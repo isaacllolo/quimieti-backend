@@ -38,13 +38,7 @@ const knex = Knex({
 const PgSession = pgSession(session); // Crea una instancia de pgSession
 
 const app = express();
-app.set('trust proxy')
-app.use(cors({
-  origin: process.env.CORS_ORIGIN,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
-}));
-app.options('*', cors()); // Esto responde a todas las solicitudes OPTIONS
+
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
