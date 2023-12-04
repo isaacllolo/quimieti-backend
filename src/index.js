@@ -58,19 +58,12 @@ app.use(cookieParser());  // Usa cookie-parser para gestionar cookies
 app.use(cors({
   allowedOrigins: process.env.CORS_ORIGIN,
   origin: process.env.CORS_ORIGIN,
-  headers: 'Content-Type, Authorization',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
-app.use((req, res, next) => {
-res.header('Access-Control-Allow-Origin', 'https://quimieti-frontend.onrender.com');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
 
-
-app.options('*', cors()); // Esto responde a todas las solicitudes OPTIONS
+app.set('trust proxy')
+app.options(process.env.CORS_ORIGIN, cors()); // Esto responde a todas las solicitudes OPTIONS
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT;

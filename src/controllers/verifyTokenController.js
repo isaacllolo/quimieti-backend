@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import { pool } from '../db.js';
 
 const verifyToken = async (req, res) => {
-    console.log('Verificando token:', req.headers.cookie);
     const token = req.headers.cookie.split('token=')[1];
 
     if (!token) {
