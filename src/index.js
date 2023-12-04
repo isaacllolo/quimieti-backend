@@ -38,7 +38,6 @@ const knex = Knex({
 const PgSession = pgSession(session); // Crea una instancia de pgSession
 
 const app = express();
-app.set('trust proxy')
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH', 'CONNECT', 'TRACE'],
@@ -46,10 +45,7 @@ app.use(cors({
   allowedOrigins: ['https://localhost:3000' ,process.env.CORS_ORIGIN],
     credentials: true,
 }));
-app.use((req, res) => {
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  next();
-});
+app.set('trust proxy');
 app.use(express.static('public'));
 app.use(
   session({
@@ -70,8 +66,7 @@ app.use(cookieParser());  // Usa cookie-parser para gestionar cookies
 
 
 
-app.set('trust proxy')
-app.options('*', cors()); // Esto responde a todas las solicitudes OPTIONS
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT;
