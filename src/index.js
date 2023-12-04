@@ -77,6 +77,7 @@ app.use((req, res, next) => {
 });
 app.use(cors({
   allowedOrigins: process.env.CORS_ORIGIN,
+  allowedHeaders: 'Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers',
   origin: process.env.CORS_ORIGIN,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
