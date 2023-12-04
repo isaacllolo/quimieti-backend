@@ -42,8 +42,14 @@ app.set('trust proxy')
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH', 'CONNECT', 'TRACE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedOrigins: ['https://localhost:3000' ,process.env.CORS_ORIGIN],
     credentials: true,
 }));
+app.use((req, res) => {
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  next();
+});
 app.use(express.static('public'));
 app.use(
   session({
