@@ -16,6 +16,7 @@ import verifyToken from './controllers/verifyTokenController.js';
 import completarLeccion from './controllers/Quiz.js';
 import dotenv from 'dotenv';
 import webpush from 'web-push'; 
+
 dotenv.config();
 webpush.setVapidDetails(
   'mailto:isaacllolo10@gmail.com',
@@ -37,7 +38,11 @@ const knex = Knex({
 const PgSession = pgSession(session); // Crea una instancia de pgSession
 
 const app = express();
-
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+}));
 
 app.use(
   session({
@@ -55,36 +60,11 @@ app.use(
   })
 );
 app.use(cookieParser());  // Usa cookie-parser para gestionar cookies
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://quimieti-frontend.onrender.com"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Private-Network", true);
-  //  Firefox caps this at 24 hours (86400 seconds). Chromium (starting in v76) caps at 2 hours (7200 seconds). The default value is 5 seconds.
-  res.setHeader("Access-Control-Max-Age", 7200);
 
-  next();
-});
-app.use(cors({
-  allowedOrigins: process.env.CORS_ORIGIN,
-  allowedHeaders: 'Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers',
-  origin: process.env.CORS_ORIGIN,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
+
 
 app.set('trust proxy')
-app.options(process.env.CORS_ORIGIN, cors()); // Esto responde a todas las solicitudes OPTIONS
+app.options('*', cors()); // Esto responde a todas las solicitudes OPTIONS
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT;
