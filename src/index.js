@@ -39,11 +39,11 @@ const PgSession = pgSession(session); // Crea una instancia de pgSession
 
 const app = express();
 app.use(cors({
-  origin: '*',
+  origin: process.env.CORS_ORIGIN,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH', 'CONNECT', 'TRACE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
-  optionsSuccessStatus: 200
+  allowedOrigins: ['https://localhost:3000' ,process.env.CORS_ORIGIN],
+    credentials: true,
 }));
 app.set('trust proxy');
 app.use(express.static('public'));
