@@ -40,6 +40,7 @@ const PgSession = pgSession(session); // Crea una instancia de pgSession
 const app = express();
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
+
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH', 'CONNECT', 'TRACE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   allowedOrigins: ['https://localhost:3000' ,process.env.CORS_ORIGIN],

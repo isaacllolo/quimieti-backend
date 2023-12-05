@@ -5,7 +5,7 @@ USE mi_app;
 
 -- Tabla de usuarios
 CREATE TABLE IF NOT EXISTS usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT  PRIMARY KEY,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
     email VARCHAR(100) UNIQUE,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 -- Tabla de temas
 CREATE TABLE IF NOT EXISTS temas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT  PRIMARY KEY,
     nombre VARCHAR(100),
     descripcion TEXT,
     completado BOOLEAN DEFAULT false
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS temas (
 
 -- Tabla de lecciones
 CREATE TABLE IF NOT EXISTS lecciones (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT  PRIMARY KEY,
     id_tema INT,
     title VARCHAR(100),
     description TEXT,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS lecciones (
 
 -- Tabla de quizzes
 CREATE TABLE IF NOT EXISTS quizzes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT  PRIMARY KEY,
     id_leccion INT,
     question VARCHAR(255),
     options TEXT,
