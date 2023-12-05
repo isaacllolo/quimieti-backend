@@ -45,7 +45,7 @@ app.use(cors({
   allowedOrigins: ['https://localhost:3000' ,process.env.CORS_ORIGIN],
     credentials: true,
 }));
-app.set('trust proxy');
+app.set('trust proxy', 1);
 app.use(express.static('public'));
 app.use(
   session({
