@@ -13,7 +13,7 @@ import completarLeccion from './controllers/Quiz.js';
 import dotenv from 'dotenv';
 import webpush from 'web-push'; 
 import morgan  from "morgan";
-import session from './storage.mjs';
+import session from './storage.js';
 dotenv.config();
 webpush.setVapidDetails(
   'mailto:isaacllolo10@gmail.com',
