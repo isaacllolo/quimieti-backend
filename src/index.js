@@ -41,9 +41,9 @@ const app = express();
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
 
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH', 'CONNECT', 'TRACE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  allowedOrigins: ['https://localhost:3000' ,process.env.CORS_ORIGIN],
+  allowedOrigins: [process.env.CORS_ORIGIN],
     credentials: true,
 }));
 app.set('trust proxy', 1);
