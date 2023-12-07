@@ -75,7 +75,7 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Servidor en ejecución en el puerto ${PORT}`));
 
 
-
+app.options('*', cors()); // include before other routes
 
 app.use('/login', Login.controlador);
 app.use('/register', Register.controlador);
