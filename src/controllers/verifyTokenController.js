@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { pool } from '../db.js';
 
 const verifyToken = async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', process.env.CORS_ORIGIN);
     const token = req.headers.cookie.split('token=')[1];
 
     if (!token) {
