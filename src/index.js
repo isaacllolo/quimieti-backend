@@ -13,7 +13,7 @@ import completarLeccion from './controllers/Quiz.js';
 import dotenv from 'dotenv';
 import webpush from 'web-push'; 
 import morgan  from "morgan";
-import session from './storage.js';
+import config from './storage.js';
 dotenv.config();
 webpush.setVapidDetails(
   'mailto:isaacllolo10@gmail.com',
@@ -29,7 +29,7 @@ app.use(cors({
     credentials: true,
 }));
 app.set('trust proxy', 1);
-app.use(session);
+app.use(config);
 app.use(morgan("dev"));
 app.use(express.static('public'));
 app.use(cookieParser());  // Usa cookie-parser para gestionar cookies
