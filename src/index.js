@@ -29,7 +29,7 @@ app.use(cors({
     credentials: true,
 }));
 app.set('trust proxy', 1);
-app.use(session.config);
+app.use(session.config); 
 app.use(morgan("dev"));
 app.use(express.static('public'));
 app.use(cookieParser());  // Usa cookie-parser para gestionar cookies
