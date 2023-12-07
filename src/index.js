@@ -43,7 +43,6 @@ app.use(cors({
   origin: process.env.CORS_ORIGIN,
 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
   allowedOrigins: [process.env.CORS_ORIGIN],
     credentials: true,
     preflightContinue: false,
