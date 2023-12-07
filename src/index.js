@@ -1,5 +1,4 @@
 import express from 'express';
-import session from 'express-session';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import obtenerInformacionTemaController from './controllers/temasController.js';
