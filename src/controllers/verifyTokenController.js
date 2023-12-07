@@ -4,9 +4,8 @@ import { pool } from '../db.js';
 
 const verifyToken = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', process.env.CORS_ORIGIN);
-    const token = req.body.token;
-    console.log(req.body);
-    console.log('Token:', token);
+    console.log(req.headers.cookie);
+    const token = req.headers.cookie.split('token=')[1];
 
     if (!token) {
         return res.status(401).json({ mensaje: 'Token no proporcionado' });
@@ -23,7 +22,7 @@ const verifyToken = async (req, res) => {
             return res.status(401).json({ mensaje: 'Usuario no encontrado' });
         }
         res.setHeader('Access-Control-Allow-Methods', 'POST');
-        res.status(200).json({ mensaje: 'Token válido',status: "success" , usuario: userResult.rows[0].usuario });
+        res.status(200).json({ mensaje: 'Token válido',status: "success" , usuario: userResult.rows[0].usuario } );
     } catch (error) {
         console.error('Error al verificar el token:', error);
         res.status(401).json({ mensaje: 'Token inválido', error: error.message });
