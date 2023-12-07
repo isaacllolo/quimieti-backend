@@ -30,4 +30,4 @@ const config =session({
     }
 })
 
-export { config };
+export default { config };
