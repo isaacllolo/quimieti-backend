@@ -45,6 +45,8 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
   allowedOrigins: [process.env.CORS_ORIGIN],
     credentials: true,
+    preflightContinue: false,
+	optionsSuccessStatus: 204
 }));
 app.set('trust proxy', 1);
 app.use(express.static('public'));
