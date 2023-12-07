@@ -7,7 +7,7 @@ const verifyToken = async (req, res) => {
     console.log( 'HEADERS: ',req.headers);
     console.log( 'COOKIES: ',req.cookies);
     console.log( 'BODY: ',req.body);
-    const token = req.headers.cookie.split('token=')[1];
+    const token = req.body.split('token=')[1];
 
     if (!token) {
         return res.status(401).json({ mensaje: 'Token no proporcionado' });
