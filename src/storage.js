@@ -1,6 +1,7 @@
 import session from 'express-session';
-const KnexSessionStore = require('connect-session-knex')(session);
+import KnexSessionStore from 'connect-session-knex';
 import Knex from 'knex';
+KnexSessionStore(session);
 const knex = Knex({
 	client: 'pg',
 	connection: {
