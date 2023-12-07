@@ -30,4 +30,4 @@ const config =session({
     }
 })
 
-module.exports = config
+export { config };
