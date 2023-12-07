@@ -45,8 +45,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedOrigins: [process.env.CORS_ORIGIN],
     credentials: true,
-    preflightContinue: false,
-	optionsSuccessStatus: 204
 }));
 app.use(morgan("dev"))
 app.set('trust proxy', 1);
