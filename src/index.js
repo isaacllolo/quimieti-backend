@@ -2,7 +2,6 @@ import express from 'express';
 import session from 'express-session';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import pgSession from 'connect-pg-simple'; // Importa pgSession desde connect-pg-simple
 import obtenerInformacionTemaController from './controllers/temasController.js';
 import obtenerInformacionLeccionController from './controllers/leccionesController.js';
 import marcarLeccionComoCompletadaController from './controllers/progresoController.js';
@@ -10,7 +9,6 @@ import Login from './controllers/Login.js';
 import Register from './controllers/Register.js';
 import obtenerInformacionDelTema from './controllers/courseController.js';
 import logout from './controllers/LogOut.js';
-import { pool } from './db.js';
 import verifyToken from './controllers/verifyTokenController.js';
 import completarLeccion from './controllers/Quiz.js';
 import dotenv from 'dotenv';
@@ -31,10 +29,9 @@ app.use(cors({
   allowedOrigins: [process.env.CORS_ORIGIN],
     credentials: true,
 }));
-
-app.use(morgan("dev"));
-app.use(session);
 app.set('trust proxy', 1);
+app.use(session);
+app.use(morgan("dev"));
 app.use(express.static('public'));
 app.use(cookieParser());  // Usa cookie-parser para gestionar cookies
 
