@@ -2,7 +2,6 @@ import express from 'express';
 import session from 'express-session';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import Knex from 'knex';
 import pgSession from 'connect-pg-simple'; // Importa pgSession desde connect-pg-simple
 import obtenerInformacionTemaController from './controllers/temasController.js';
 import obtenerInformacionLeccionController from './controllers/leccionesController.js';
@@ -17,27 +16,13 @@ import completarLeccion from './controllers/Quiz.js';
 import dotenv from 'dotenv';
 import webpush from 'web-push'; 
 import morgan  from "morgan";
-
+import session from './storage.cjs';
 dotenv.config();
 webpush.setVapidDetails(
   'mailto:isaacllolo10@gmail.com',
   process.env.VAPID_PUBLIC_KEY,
   process.env.VAPID_PRIVATE_KEY
 );
-
-const knex = Knex({
-  client: 'pg',
-  connection: {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    port: process.env.DB_PORT,
-  },
-});
-
-const PgSession = pgSession(session); // Crea una instancia de pgSession
-
 const app = express();
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
@@ -46,25 +31,11 @@ app.use(cors({
   allowedOrigins: [process.env.CORS_ORIGIN],
     credentials: true,
 }));
-app.use(morgan("dev"))
+
+app.use(morgan("dev"));
+app.use(session);
 app.set('trust proxy', 1);
 app.use(express.static('public'));
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: new PgSession({
-      pool,
-      tableName: 'session',
-    }),
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-      sameSite: 'none',
-      secure: true,
-    },
-  })
-);
 app.use(cookieParser());  // Usa cookie-parser para gestionar cookies
 
 
