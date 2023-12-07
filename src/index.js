@@ -16,6 +16,7 @@ import verifyToken from './controllers/verifyTokenController.js';
 import completarLeccion from './controllers/Quiz.js';
 import dotenv from 'dotenv';
 import webpush from 'web-push'; 
+import morgan  from "morgan";
 
 dotenv.config();
 webpush.setVapidDetails(
@@ -48,6 +49,7 @@ app.use(cors({
     preflightContinue: false,
 	optionsSuccessStatus: 204
 }));
+app.use(morgan("dev"))
 app.set('trust proxy', 1);
 app.use(express.static('public'));
 app.use(
