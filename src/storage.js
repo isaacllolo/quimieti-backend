@@ -1,7 +1,6 @@
 import session from 'express-session';
 import KnexSessionStore from 'connect-session-knex';
 import Knex from 'knex';
-KnexSessionStore(session);
 const knex = Knex({
 	client: 'pg',
 	connection: {
@@ -12,7 +11,7 @@ const knex = Knex({
 	  port: process.env.DB_PORT,
 	},
   });
-
+  KnexSessionStore(session);
   const store = new KnexSessionStore({
 	knex,
 	tablename: 'session',
