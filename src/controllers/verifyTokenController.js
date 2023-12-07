@@ -5,6 +5,8 @@ import { pool } from '../db.js';
 const verifyToken = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', process.env.CORS_ORIGIN);
     console.log( 'HEADERS: ',req.headers);
+    console.log( 'COOKIES: ',req.cookies);
+    console.log( 'BODY: ',req.body);
     const token = req.headers.cookie.split('token=')[1];
 
     if (!token) {
