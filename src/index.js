@@ -26,6 +26,8 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedOrigins: [process.env.CORS_ORIGIN],
     credentials: true,
+    exposedHeaders: ['set-cookie'],
+    optionsSuccessStatus: 204,
 }));
 app.set('trust proxy', 1);
 app.use(session.config); 
