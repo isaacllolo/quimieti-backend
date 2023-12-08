@@ -26,8 +26,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedOrigins: [process.env.CORS_ORIGIN],
     credentials: true,
-    exposedHeaders: ['set-cookie'],
-    optionsSuccessStatus: 204,
 }));
 app.set('trust proxy', 1);
 app.use(session.config); 
@@ -44,7 +42,6 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Servidor en ejecución en el puerto ${PORT}`));
 
 
-app.options('*', cors()); // include before other routes
 
 app.use('/login', Login.controlador);
 app.use('/register', Register.controlador);
