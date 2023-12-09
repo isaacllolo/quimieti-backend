@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 const obtenerInformacionDelTema = async (req, res) => {
   try {
-    console.log('Recibiendo solicitud de información del tema:', req.headers);
+    console.log('Recibiendo solicitud de información del tema:', req.headers.cookie);
     console.log('USERID',req.session.user.id);
     console.log('PARAMETROS:', req.params);
     console.log('TemaID:', req.params.temaId)
