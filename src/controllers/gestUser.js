@@ -31,4 +31,4 @@ const getUserName = async (req, res) => {
 };
 
 // Exporta el controlador
-export default { ruta: '/get-user-name', metodo: 'get', controlador: getUserName };
+export default { ruta: '/getuser', metodo: 'get', controlador: getUserName };
