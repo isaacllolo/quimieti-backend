@@ -7,19 +7,16 @@ const verifyToken = async (req, res) => {
     console.log( 'HEADERS: ',req.headers);
     console.log( 'COOKIES: ',req.cookies);
     console.log( 'BODY: ',req.body);
-    const token = req.headers.cookie.split('token=')[1];
-    console.log('Token:', token); 
-    console.log('Usuario en sesion:',req.session.user);
-
-    if (!token) {
-        return res.status(401).json({ mensaje: 'Token no proporcionado' });
+    console.log('Usuario en sesion ID:',req.session.user.id);
+    if (!req.session.user) {
+        return res.status(401).json({ mensaje: ' Ups este usuario no se ha logueado' });
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.SESSION_SECRET);
+        const decoded =  req.session.user;
         console.log('Decoded:', decoded);
 
-        const userResult = await pool.query('SELECT * FROM usuarios WHERE id = $1', [decoded.userId]);
+        const userResult = await pool.query('SELECT * FROM usuarios WHERE id = $1', [decoded.id]);
        // console.log('User Result:', userResult.rows);
 
         if (userResult.rows.length === 0) {
