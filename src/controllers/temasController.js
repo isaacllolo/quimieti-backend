@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { pool } from '../db.js';
 
 const obtenerInformacionTema = async (req, res) => {
+  console.log(req.session.user);
   try {
     if (!req.session.user) {
       console.log('No se encontró el token en la cookie');
