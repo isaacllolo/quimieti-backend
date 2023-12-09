@@ -6,6 +6,7 @@ import obtenerInformacionLeccionController from './controllers/leccionesControll
 import marcarLeccionComoCompletadaController from './controllers/progresoController.js';
 import Login from './controllers/Login.js';
 import Register from './controllers/Register.js';
+import getUserName from './controllers/gestUser.js';
 import obtenerInformacionDelTema from './controllers/courseController.js';
 import logout from './controllers/LogOut.js';
 import verifyToken from './controllers/verifyTokenController.js';
@@ -50,6 +51,7 @@ app.use('/slides/:id', obtenerInformacionLeccionController.controlador);
 app.use('/progreso', marcarLeccionComoCompletadaController.controlador);
 app.use('/course/:temaId', obtenerInformacionDelTema.controlador);
 app.use('/logout', logout.controlador);
+app.use('/getuser', getUserName.controlador);
 app.use('/verify-token', verifyToken.controlador); 
 app.use('/quiz/:lessonId', completarLeccion.controlador);
 

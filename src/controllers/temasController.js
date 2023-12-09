@@ -4,12 +4,11 @@ import { pool } from '../db.js';
 
 const obtenerInformacionTema = async (req, res) => {
   try {
-    const token = req.headers.cookie.split('token=')[1];
+    const token = req.session.user;
     if (!token) {
       return res.status(401).json({ mensaje: 'Token no proporcionado en la cookie' });
     }
-    const decoded = jwt.verify(token, process.env.SESSION_SECRET);
-    const userId = decoded.userId;
+    const userId = req.session.user.id;
     console.log('User ID:', userId);
     // Obtener información de los temas y su estado de completado
     const result = await pool.query('SELECT t.*, CASE WHEN COUNT(l.id) = SUM(CAST(p.completado AS INT)) THEN true ELSE false END AS completado FROM temas t LEFT JOIN lecciones l ON t.id = l.id_tema LEFT JOIN progreso_usuario p ON l.id = p.id_leccion AND p.id_usuario = $1 GROUP BY t.id ORDER BY t.id', [userId]);
