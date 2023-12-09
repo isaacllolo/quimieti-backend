@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 const obtenerInformacionDelTema = async (req, res) => {
   try {
-    const { temaId } = req.params;
+    const { temaId } = req.params.id;
     
  
     const userId = req.session.user.id;
