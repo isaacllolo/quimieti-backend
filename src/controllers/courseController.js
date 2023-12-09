@@ -5,9 +5,11 @@ import jwt from 'jsonwebtoken';
 const obtenerInformacionDelTema = async (req, res) => {
   try {
     const { temaId } = req.params;
+    
  
     const userId = req.session.user.id;
-
+    console.log('User ID:', userId);
+    console.log('Tema ID:', temaId);
 
     // Obtener información del tema
     const temaResult = await pool.query('SELECT * FROM temas WHERE id = $1', [temaId]);
