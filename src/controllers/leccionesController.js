@@ -7,7 +7,8 @@ const obtenerInformacionSlidesPorLeccion = async (req, res) => {
   const { pool } = await import('../db.js');
 
   try {
-    const { id } = req.params;
+    const { id } = req.params.id;
+    console.log('ID de la lección:', req.params.id);
     const result = await pool.query('SELECT * FROM slides WHERE leccion_id = $1', [id]);
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     if (result.rows && result.rows.length > 0) {
