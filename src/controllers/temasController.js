@@ -4,9 +4,8 @@ import { pool } from '../db.js';
 
 const obtenerInformacionTema = async (req, res) => {
   try {
-    const token = req.session.user;
-    console.log('Token:', token);
-    if (!token) {
+    if (!req.session.user) {
+      console.log('No se encontró el token en la cookie');
       return res.status(401).json({ mensaje: 'Token no proporcionado en la cookie' });
     }
     const userId = req.session.user.id;
