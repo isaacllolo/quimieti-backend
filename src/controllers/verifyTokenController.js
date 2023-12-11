@@ -5,7 +5,6 @@ import { pool } from '../db.js';
 const verifyToken = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', process.env.CORS_ORIGIN);
 
-    console.log('Usuario en sesion ID:',req.session.user.id);
     if (!req.session.user) {
         return res.status(401).json({ mensaje: ' Ups este usuario no se ha logueado' });
     }
