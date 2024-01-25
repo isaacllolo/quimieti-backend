@@ -27,6 +27,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedOrigins: [process.env.CORS_ORIGIN],
     credentials: true,
+    sameSite: 'strict',
 }));
 app.set('trust proxy', 1);
 app.use(session.config); 
