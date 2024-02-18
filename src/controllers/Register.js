@@ -44,7 +44,6 @@ const Register = async (req, res) => {
     const newUser = result.rows[0];
     delete newUser.contrasena;
 
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
 
     res.status(201).json({ mensaje: 'Usuario registrado exitosamente' });
   } catch (error) {
