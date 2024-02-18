@@ -5,7 +5,7 @@ USE mi_app;
 
 -- Tabla de usuarios
 CREATE TABLE IF NOT EXISTS usuarios (
-    id INT  PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
     email VARCHAR(100) UNIQUE,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 -- Tabla de temas
 CREATE TABLE IF NOT EXISTS temas (
-    id INT  PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     nombre VARCHAR(100),
     descripcion TEXT,
     completado BOOLEAN DEFAULT false
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS temas (
 
 -- Tabla de lecciones
 CREATE TABLE IF NOT EXISTS lecciones (
-    id INT  PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     id_tema INT,
     title VARCHAR(100),
     description TEXT,
@@ -33,10 +33,10 @@ CREATE TABLE IF NOT EXISTS lecciones (
 
 -- Tabla de quizzes
 CREATE TABLE IF NOT EXISTS quizzes (
-    id INT  PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     id_leccion INT,
     question VARCHAR(255),
-    options TEXT,
+    options VARCHAR[],
     correctAnswerIndex INT,
     FOREIGN KEY (id_leccion) REFERENCES lecciones(id)
 );
@@ -54,10 +54,9 @@ CREATE TABLE IF NOT EXISTS progreso_usuario (
 );
 
 CREATE TABLE slides (
-  id SERIAL PRIMARY KEY,
-  leccion_id INTEGER REFERENCES lecciones(id),
-  title VARCHAR(255),
-  content TEXT,
-  image_url VARCHAR(255)
+    id SERIAL PRIMARY KEY,
+    leccion_id INTEGER REFERENCES lecciones(id),
+    title VARCHAR(255),
+    content TEXT,
+    image_url VARCHAR(255)
 );
-
