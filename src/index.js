@@ -11,7 +11,7 @@ import obtenerInformacionDelTema from './controllers/courseController.js';
 import logout from './controllers/LogOut.js';
 import verifyToken from './controllers/verifyTokenController.js';
 import completarLeccion from './controllers/Quiz.js';
-import * as adminController from './controllers/AdminController.jsdminController.js';
+import * as adminController from './controllers/AdminController.js';
 
 import dotenv from 'dotenv';
 import webpush from 'web-push'; 
