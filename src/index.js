@@ -59,15 +59,18 @@ app.use('/verify-token', verifyToken.controlador);
 app.use('/quiz/:lessonId', completarLeccion.controlador);
 app.use('/admin', adminController.obtenerDatosAdmin);
 app.use('/admin/temas', adminController.agregarTema);
-app.use('/admin/temas/:id', adminController.editarTema);
-app.use('/admin/temas/:id', adminController.eliminarTema);
+app.use('/admin/temas/editar/:id', adminController.editarTema);
+app.use('/admin/temas/eliminar/:id', adminController.eliminarTema);
+
 app.use('/admin/lecciones', adminController.agregarLeccion);
-app.use('/admin/lecciones/:id', adminController.editarLeccion);
-app.use('/admin/lecciones/:id', adminController.eliminarLeccion);
+app.use('/admin/lecciones/editar/:id', adminController.editarLeccion);
+app.use('/admin/lecciones/eliminar/:id', adminController.eliminarLeccion);
+
 app.use('/admin/quizzes', adminController.agregarQuiz);
-app.use('/admin/quizzes/:id', adminController.editarQuiz);
-app.use('/admin/quizzes/:id', adminController.eliminarQuiz);
+app.use('/admin/quizzes/editar/:id', adminController.editarQuiz);
+app.use('/admin/quizzes/eliminar/:id', adminController.eliminarQuiz);
+
 app.use('/admin/slides', adminController.agregarSlide);
-app.use('/admin/slides/:id', adminController.editarSlide);
-app.use('/admin/slides/:id', adminController.eliminarSlide);
+app.use('/admin/slides/editar/:id', adminController.editarSlide);
+app.use('/admin/slides/eliminar/:id', adminController.eliminarSlide);
 
