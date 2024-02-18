@@ -69,16 +69,5 @@ app.use('/getuser', getUserName.controlador);
 app.use('/verify-token', verifyToken.controlador); 
 app.use('/quiz/:lessonId', completarLeccion.controlador);
 app.use('/admin', obtenerDatosAdmin.controlador);
-app.use('/admin/temas', agregarTema.controlador);
-app.use('/admin/temas/:id', editarTema.controlador);
-app.use('/admin/temas/:id', eliminarTema.controlador);
-app.use('/admin/lecciones', agregarLeccion.controlador);
-app.use('/admin/lecciones/:id', editarLeccion.controlador);
-app.use('/admin/lecciones/:id', eliminarLeccion.controlador);
-app.use('/admin/quizzes', agregarQuiz.controlador);
-app.use('/admin/quizzes/:id', editarQuiz.controlador);
-app.use('/admin/quizzes/:id', eliminarQuiz.controlador);
-app.use('/admin/slides', agregarSlide.controlador);
-app.use('/admin/slides/:id', editarSlide.controlador);
-app.use('/admin/slides/:id', eliminarSlide.controlador);
+
 
