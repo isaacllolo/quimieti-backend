@@ -57,7 +57,7 @@ app.use('/logout', logout.controlador);
 app.use('/getuser', getUserName.controlador);
 app.use('/verify-token', verifyToken.controlador); 
 app.use('/quiz/:lessonId', completarLeccion.controlador);
-app.use('/admin', adminController.obtenerDatosAdmin);
+//app.use('/admin', adminController.obtenerDatosAdmin);
 app.use('/admin/temas', adminController.agregarTema);
 app.use('/admin/temas/editar/:id', adminController.editarTema);
 app.use('/admin/temas/eliminar/:id', adminController.eliminarTema);
